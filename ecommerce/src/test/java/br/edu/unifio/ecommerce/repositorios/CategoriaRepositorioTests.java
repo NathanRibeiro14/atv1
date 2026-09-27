@@ -3,6 +3,7 @@ package br.edu.unifio.ecommerce.repositorios;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
+import java.util.List;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
@@ -23,5 +24,14 @@ public class CategoriaRepositorioTests {
 
         assertNotNull (categoria);
         assertEquals("Eletrônicos", categoria.getNome());
+        assertEquals("Equipamentos Eletrônicos", categoria.getDescricao());
+    }
+
+    @Test 
+    public void deveBuscarTodasCategorias () {
+        List<Categoria> categorias = categoriaRepositorio.findAll();
+
+        assertNotNull (categorias);
+        assertEquals(5, categorias.size());
     }
 }
