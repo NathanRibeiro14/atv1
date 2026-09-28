@@ -34,4 +34,19 @@ public class ClienteRepositorioTests {
         assertNotNull (clientes);
         assertEquals(5, clientes.size());
     } 
+
+    @Test
+    public void deveCriarUmCliente () {
+
+    }
+
+    @Test 
+    public void deveAlterarUmCliente () {
+
+    }
+
+    @Test 
+    public void deveDeletarUmCliente () {
+        
+    }
 }

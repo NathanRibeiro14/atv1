@@ -2,7 +2,9 @@ package br.edu.unifio.ecommerce.repositorios;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.util.Optional;
 import java.util.List;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Test;
@@ -33,5 +35,42 @@ public class CategoriaRepositorioTests {
 
         assertNotNull (categorias);
         assertEquals(5, categorias.size());
+    }
+
+    @Test 
+    public void deveCriarUmaCategoria () {
+        Categoria categoria = new Categoria();
+        categoria.setNome("Livros");
+        categoria.setDescricao("Livros Técnicos");
+        categoria = categoriaRepositorio.save(categoria);
+
+        assertEquals("Livros", categoria.getNome());
+        assertEquals("Livros Técnicos", categoria.getDescricao());
+    }
+
+    @Test 
+    public void deveAlterarUmaCategoria () {
+        Categoria categoria = new Categoria();
+        categoria.setNome("Livros");
+        categoria.setDescricao("Livros Técnicos");
+        categoria = categoriaRepositorio.save(categoria);
+
+        categoria.setNome("Dicionarios");
+        categoria.setDescricao("Livros diversos");
+
+        assertEquals("Dicionarios", categoria.getNome());
+        assertEquals("Livros diversos", categoria.getDescricao());
+    }
+
+    @Test 
+    public void deveDeletarUmaCategoria () {
+        Categoria categoria = new Categoria();
+        categoria.setNome("Livros");
+        categoria.setDescricao("Livros Técnicos");
+        categoria = categoriaRepositorio.save(categoria);
+
+        categoriaRepositorio.deleteById(categoria.getId());
+        Optional<Categoria> categoriaVerificacao = categoriaRepositorio.findById(categoria.getId());
+        assertTrue(categoriaVerificacao.isEmpty());
     }
 }
