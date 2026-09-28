@@ -27,7 +27,7 @@ public class PagamentoRepositorioTests {
 
         assertNotNull (pagamento);
         assertThat(new BigDecimal("73.44")).isEqualByComparingTo(pagamento.getValor());
-        assertEquals(LocalDateTime.parse("2026-07-29 13:48:44"), pagamento.getData());
+        assertEquals(LocalDateTime.parse("2026-07-29T13:48:44").plusHours(3), pagamento.getData());
     }
 
     @Test 
